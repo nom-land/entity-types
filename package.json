@@ -1,0 +1,21 @@
+{
+  "name": "entity-types",
+  "version": "0.1.0",
+  "description": "entity-types is a type library for describing all entities in this world.",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup --dts",
+    "publish": "npm publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}
