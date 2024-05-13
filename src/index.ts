@@ -1,4 +1,4 @@
-export interface BaseEntity<T> {
+export interface BaseEntity {
     /**
      * The url of this entity.
      */
@@ -8,10 +8,10 @@ export interface BaseEntity<T> {
      */
     version: "20231121";
 
-    parser: T;
+    parser: string;
 }
 
-export interface Entity<T> extends BaseEntity<T> {
+export interface Entity extends BaseEntity {
     /**
      * The title of this entity.
      */

@@ -1,6 +1,6 @@
 {
   "name": "entity-types",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "entity-types is a type library for describing all entities in this world.",
   "main": "./dist/index.js",
   "files": [
