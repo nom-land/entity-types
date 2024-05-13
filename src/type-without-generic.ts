@@ -1,4 +1,6 @@
-export interface BaseEntity<T> {
+/* This file is generated from ./index.ts manually. */
+
+export interface BaseEntity {
     /**
      * The url of this entity.
      */
@@ -8,10 +10,10 @@ export interface BaseEntity<T> {
      */
     version: "20231121";
 
-    parser: T;
+    parser: string;
 }
 
-export interface Entity<T> extends BaseEntity<T> {
+export interface Entity extends BaseEntity {
     /**
      * The title of this entity.
      */
@@ -60,7 +62,7 @@ export interface Entity<T> extends BaseEntity<T> {
     metaData?: PostMetaData | BookMetaData | PodcastMetaData | DefaultMetaData;
 }
 
-interface DigitalContent<Derivation extends "translation" | "original"> {
+interface DigitalContent {
     /**
      * The platform of the url.
      *  eg, "mp.weixin" | "Mirror" | "Medium" | "Matters" | "Personal Blog" | "Other" | "douban";
@@ -94,26 +96,24 @@ interface DigitalContent<Derivation extends "translation" | "original"> {
     /**
      * If this book is a translation, translators of this book.
      */
-    translators?: Derivation extends "translation" ? string[] : never;
+    translators?: string[];
     /**
      * If this book is a translation, the original book's URL.
      */
-    originalUrl?: Derivation extends "translation" ? string : never;
+    originalUrl?: string;
     /**
      * If this book is a translation, the original book's title.
      */
-    originalTitle?: Derivation extends "translation" ? string : never;
+    originalTitle?: string;
     /**
      * If this book is a translation, the original book's language.
      */
-    originalLanguage?: Derivation extends "translation" ? string : never;
+    originalLanguage?: string;
 }
 
-export interface DefaultMetaData
-    extends DigitalContent<"translation" | "original"> {}
+export interface DefaultMetaData extends DigitalContent {}
 
-export interface BookMetaData
-    extends DigitalContent<"translation" | "original"> {
+export interface BookMetaData extends DigitalContent {
     /**
      * Pages of this book.
      */
@@ -124,8 +124,7 @@ export interface BookMetaData
     ISBN?: string;
 }
 
-export interface PostMetaData
-    extends DigitalContent<"translation" | "original"> {
+export interface PostMetaData extends DigitalContent {
     /*
      * The type of the post.
      */
@@ -136,8 +135,7 @@ export interface PostMetaData
     keywords?: string[];
 }
 
-export interface PodcastMetaData
-    extends DigitalContent<"translation" | "original"> {
+export interface PodcastMetaData extends DigitalContent {
     /*
      * The host of the podcast episode.
      */
@@ -179,5 +177,3 @@ interface Media {
      */
     height?: number;
 }
-
-export * from "./zod-schema";

@@ -1,4 +1,4 @@
-export interface BaseEntity<T> {
+export interface BaseEntity {
     /**
      * The url of this entity.
      */
@@ -8,10 +8,10 @@ export interface BaseEntity<T> {
      */
     version: "20231121";
 
-    parser: T;
+    parser: "elephant" | "extractus" | "custom";
 }
 
-export interface Entity<T> extends BaseEntity<T> {
+export interface Entity extends BaseEntity {
     /**
      * The title of this entity.
      */
@@ -36,20 +36,20 @@ export interface Entity<T> extends BaseEntity<T> {
     links?: string[];
     /**
      * The type of this entity.
-     *  - `post` (default type) : Any content like a blog post, a tweet post, an article... The metaData type should be PostMetaData.
-     *  - `book` : book. The metaData type should be BookMetaData.
-     *  - `podcast` : podcast. The metaData type should be PodcastMetaData.
+     *  - `post` (default type) : Any content like a blog post, a tweet post, an article...
+     *  - `podcast` : podcast
      *  - `song` : a song
      *  - `video` : video
      *  - `paper` : academic paper, scholarly articles, formal piece of writing about an academic subject.
+     *  - `book` : book
      *  - `movie` : a movie
      *  - `game` : a game
      */
     type?:
         | "post"
         | "book"
-        | "podcast"
         | "video"
+        | "podcast"
         | "paper"
         | "song"
         | "movie"
@@ -57,7 +57,7 @@ export interface Entity<T> extends BaseEntity<T> {
     /**
      * The metadata of this entity.
      */
-    metaData?: PostMetaData | BookMetaData | PodcastMetaData | DefaultMetaData;
+    metaData?: PostMetaData | BookMetaData;
 }
 
 interface DigitalContent<Derivation extends "translation" | "original"> {
@@ -72,7 +72,7 @@ interface DigitalContent<Derivation extends "translation" | "original"> {
      */
     authors?: string[];
     /**
-     * The language of this post entry, iso639-1Name.
+     * The language of the content. iso6391Name.
      */
     language?: string;
     /**
@@ -88,7 +88,7 @@ interface DigitalContent<Derivation extends "translation" | "original"> {
      */
     lastModified?: string;
     /**
-     * The copyright statement or open source license of the content(like CC0 / CC BY-NC-ND / MIT license / Apache).
+     * The copyright of the content.
      */
     copyright?: string;
     /**
@@ -108,9 +108,6 @@ interface DigitalContent<Derivation extends "translation" | "original"> {
      */
     originalLanguage?: Derivation extends "translation" ? string : never;
 }
-
-export interface DefaultMetaData
-    extends DigitalContent<"translation" | "original"> {}
 
 export interface BookMetaData
     extends DigitalContent<"translation" | "original"> {
@@ -134,18 +131,6 @@ export interface PostMetaData
      * The keywords of this post.
      */
     keywords?: string[];
-}
-
-export interface PodcastMetaData
-    extends DigitalContent<"translation" | "original"> {
-    /*
-     * The host of the podcast episode.
-     */
-    host?: string;
-    /**
-     * The guests of this podcast episode.
-     */
-    guests?: string[];
 }
 
 interface Media {
@@ -179,5 +164,3 @@ interface Media {
      */
     height?: number;
 }
-
-export * from "./zod-schema";
