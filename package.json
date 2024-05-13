@@ -21,7 +21,8 @@
     "ts-node": "^10.9.2",
     "ts-to-zod": "^3.8.4",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "sanitize-html": ">=2.12.1"
   },
   "dependencies": {
     "nomland.js": "^0.5.10",
